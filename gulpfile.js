@@ -41,3 +41,13 @@ gulp.task('sass:dev', function () {
         .pipe(gulp.dest(paths.cssdir))
         .pipe(browser.stream());
 });
+
+gulp.task("sass:prod", function () {
+    return gulp.src(path.scss)
+        .pipe (sass(
+            {
+                outputStyle:"compressed"
+            }
+        )).on("error", sass.logError)
+        .pipe(gulp.dest(paths.cssdir));
+})
