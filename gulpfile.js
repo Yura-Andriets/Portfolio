@@ -14,7 +14,7 @@
 var paths = {
     js : './js/**/*.js',
     jsdir : './js',
-    script : './scripts/**/*.js',
+    script : './script/**/*.js',
     scss : [
         './scss/**/*.scss',
         '!scss/**/*_scsslint_tmp*.scss'
@@ -42,12 +42,38 @@ gulp.task('sass:dev', function () {
         .pipe(browser.stream());
 });
 
-gulp.task("sass:prod", function () {
-    return gulp.src(path.scss)
-        .pipe (sass(
-            {
-                outputStyle:"compressed"
-            }
-        )).on("error", sass.logError)
+gulp.task('sass:prod', function () {
+    return gulp.src(paths.scss)
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
         .pipe(gulp.dest(paths.cssdir));
-})
+});
+
+gulp.task('js:dev', function () {
+    return gulp.src(paths.script)
+        .pipe(sourcemaps.init())
+        .pipe(size({showFiles: true}))
+        .pipe(concat('build.js'))
+        .pipe(sourcemaps.write())
+        .pipe(size({showFiles: true}))
+        .pipe(gulp.dest(paths.jsdir));
+});
+
+gulp.task('js:prod', function () {
+    return gulp.src(paths.script)
+        .pipe(concat('build.js'))
+        .pipe(min())
+        .pipe(gulp.dest(paths.jsdir));
+});
+
+gulp.task("watch", function () {
+    browser.init({
+        server: {baseDir:"./"}});
+    gulp.watch(paths.scss, ['sass:dev']);
+    gulp.watch(paths.script, ['js:dev']);
+    gulp.watch([paths.html, paths.js]).on('change', browser.reload);
+});
+
+gulp.task('default', ['clean', 'js:dev', 'sass:dev', 'watch']);
+gulp.task('prod', ['clean', 'js:prod', 'sass:prod']);
