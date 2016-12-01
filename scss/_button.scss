@@ -1,0 +1,33 @@
+%btn{
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: white;
+  background: transparent;
+  padding:2.4rem 4.5rem;
+  border: 2px solid white;
+  width: auto;
+  border-radius: 3rem;
+
+
+}
+
+.btn-prime{
+  @extend %btn;
+  background: $prime;
+  border: 2px solid $prime;
+}
+
+
+.btn-prime {
+  @extend %btn;
+  background: $secondary;
+  border: 2px solid $secondary;
+
+}
+
+
+
+.btn-outline{
+  @extend %btn;
+
+}

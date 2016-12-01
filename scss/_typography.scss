@@ -1,0 +1,72 @@
+//////////////////////////////
+// Color and font typography
+//////////////////////////////
+
+
+html{
+  font-size:       10px;
+}
+
+body{
+  font-size:      1.8rem;
+  background:     $prime;
+}
+
+.h1,
+.h2,
+.h3,
+.h4
+{
+  color: $gray;
+  font-weight: bold;
+}
+
+.h1{
+  font-size: 4.8rem;
+}
+
+.h2{
+  font-size: 3.6rem;
+}
+
+.h3{
+  font-size: 2.4rem;
+}
+
+.h4{
+  font-size: 2.2rem;
+}
+
+.h5,
+.h6{
+  text-transform: uppercase;
+}
+
+.h5{
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.h6{
+  font-size: 1.4rem;
+}
+
+p{
+  font-size: 1.8rem;
+}
+
+.quote{
+  font-size: 2.2rem;
+  color: $colorQuote;
+}
+
+.smallQuote{
+  font-size: 1.6rem;
+  color: $colorQuote;
+}
+
+a {
+  color: $prime;
+  //&:hover{color: darken ($prime, $hoverEffect )}
+  //color: $;
+}
